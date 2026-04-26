@@ -23,7 +23,7 @@ export function Footer() {
             <span>&copy; {currentYear}</span>
             <span>•</span>
             <span className="flex items-center gap-1">
-            Kobe Bryan Kobayashi. All Right Reserved
+            Kobe Bryan Kobayashi. All Rights Reserved
             </span>
           </div>
 

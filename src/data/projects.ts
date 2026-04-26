@@ -7,12 +7,13 @@ export interface Project {
   githubLink: string | null;
   image: string | null;
   featured: boolean;
+  screenshots?: string[];
 }
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: "AR Food Garage",
+    title: "Mobile and Web Food Ordering System",
     description:
       "A full-stack food ordering platform using the MERN stack, featuring a mobile-friendly interface and a web-based order management system. Includes real-time order tracking, admin dashboard, and efficient restaurant workflow handling.",
     technologies: ["MongoDB", "Express.js", "React", "Node.js", "REST API"],
@@ -23,7 +24,7 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "LiquidoPH",
+    title: "Customized Inventory and Operations Management System",
     description:
       "A Laravel-based inventory and operations management system for a vape business. Provides stock tracking, order processing, reporting, and business workflow automation with a clean admin interface.",
     technologies: ["Laravel", "PHP", "MySQL", "Blade", "Bootstrap", "AJAX"],
@@ -34,7 +35,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Pechies POS and Inventory System",
+    title: "POS and Inventory System",
     description:
       "A custom-built POS and inventory system developed using Vanilla PHP. Handles sales transactions, inventory tracking, and reporting for a poultry business with a lightweight and efficient architecture.",
     technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap", "jQuery"],
@@ -45,7 +46,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "San Mateo, Rizal Official Website",
+    title: "Official Website",
     description:
       "An official government website providing public information, announcements, and online services for citizens.",
     technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap", "HTML/CSS"],
@@ -67,7 +68,7 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    title: "San Mateo Rizal Legislative Information System",
+    title: "Legislative Information System",
     description:
       "A document and records management system for legislative processes, including ordinances, resolutions, and tracking.",
     technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap", "DataTables"],
@@ -100,7 +101,7 @@ export const projects: Project[] = [
   },
   {
     id: 9,
-    title: "Document Routing System",
+    title: "Document Management and Routing System",
     description:
       "A workflow-based system for routing, tracking, and approving documents within an organization.",
     technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap", "HTML/CSS"],
@@ -111,7 +112,7 @@ export const projects: Project[] = [
   },
   {
     id: 10,
-    title: "San Mateo Rizal Public Concern",
+    title: "Public Concern System",
     description:
       "A citizen engagement platform for submitting and tracking public concerns, improving transparency and response time.",
     technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap", "AJAX"],

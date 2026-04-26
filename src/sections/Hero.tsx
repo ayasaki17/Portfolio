@@ -26,8 +26,11 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 gradient-hero-light dark:gradient-hero animate-gradient-shift" />
+      {/* Background */}
+      <div className="absolute inset-0 gradient-hero-light dark:gradient-hero" />
+      {/* Soft decorative blobs */}
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-blue-200/30 dark:bg-blue-900/20 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-indigo-200/20 dark:bg-indigo-900/10 blur-3xl pointer-events-none" />
       
       {/* Subtle Pattern Overlay */}
       {/* <div 

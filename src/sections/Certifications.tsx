@@ -1,5 +1,7 @@
-import { Award, BookOpen, ExternalLink, Clock, CheckCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Award, BookOpen, ExternalLink, Clock, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { SectionTitle } from '@/components/custom/SectionTitle';
 import { AnimatedCard } from '@/components/custom/AnimatedCard';
 import { certifications } from '@/data/certifications';
@@ -83,7 +85,7 @@ function TrainingCard({ training, index }: TrainingCardProps) {
             <BookOpen className="w-5 h-5 text-blue-600 dark:text-blue-400" />
           </div>
           <div className="flex-1 min-w-0">
-            <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-1 truncate">
+            <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-1 line-clamp-2">
               {training.title}
             </h4>
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
@@ -114,6 +116,11 @@ function TrainingCard({ training, index }: TrainingCardProps) {
 }
 
 export function Certifications() {
+  const [showAllTrainings, setShowAllTrainings] = useState(false);
+  const TRAININGS_INITIAL = 6;
+  const visibleTrainings = showAllTrainings ? trainings : trainings.slice(0, TRAININGS_INITIAL);
+  const hiddenTrainingsCount = trainings.length - TRAININGS_INITIAL;
+
   return (
     <section id="certifications" className="section-padding bg-white dark:bg-slate-950">
       <div className="container-padding mx-auto max-w-7xl">
@@ -142,11 +149,34 @@ export function Certifications() {
               Trainings & Courses
             </h3>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {trainings.map((training, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {visibleTrainings.map((training, index) => (
               <TrainingCard key={training.id} training={training} index={index} />
             ))}
           </div>
+
+          {/* Show more / Show less toggle */}
+          {hiddenTrainingsCount > 0 && (
+            <div className="text-center mt-8">
+              <Button
+                variant="outline"
+                onClick={() => setShowAllTrainings(!showAllTrainings)}
+                className="border-slate-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700"
+              >
+                {showAllTrainings ? (
+                  <>
+                    <ChevronUp className="w-4 h-4 mr-2" />
+                    Show Less
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="w-4 h-4 mr-2" />
+                    Show All Trainings ({hiddenTrainingsCount} more)
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>

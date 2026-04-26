@@ -19,8 +19,10 @@ const navLinks = [
 
 export function Navigation({ theme, toggleTheme }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const { isScrolled } = useScrollPosition();
 
+  // Lock body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -31,6 +33,27 @@ export function Navigation({ theme, toggleTheme }: NavigationProps) {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
+
+  // Scroll spy — track which section is currently in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px' }
+    );
+
+    navLinks.forEach(({ href }) => {
+      const el = document.querySelector(href);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -68,7 +91,11 @@ export function Navigation({ theme, toggleTheme }: NavigationProps) {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    activeSection === link.href
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
                 >
                   {link.label}
                 </a>
@@ -112,12 +139,21 @@ export function Navigation({ theme, toggleTheme }: NavigationProps) {
           }`}
         >
           <div className="container-padding py-4 flex flex-col gap-1">
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="px-4 py-3 text-base font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all"
+                className={`px-4 py-3 text-base font-medium rounded-lg transition-all ${
+                  activeSection === link.href
+                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+                style={{
+                  transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
+                  opacity: isMenuOpen ? 1 : 0,
+                  transform: isMenuOpen ? 'translateX(0)' : 'translateX(-10px)',
+                }}
               >
                 {link.label}
               </a>

@@ -7,7 +7,7 @@ const categoryIcons: Record<string, React.ElementType> = {
   Frontend: Code2,
   Backend: Server,
   Database: Database,
-  'AI & Machine Learning': Brain,
+  'AI Coding Assistants': Brain,
   'Tools & DevOps': Wrench,
 };
 
@@ -35,7 +35,9 @@ function SkillCategory({ category, skills: categorySkills, index }: SkillCategor
 
         {/* Skills List */}
         <div className="space-y-3">
-          {categorySkills.items.map((skill) => (
+          {[...categorySkills.items]
+            .sort((a, b) => b.years - a.years)
+            .map((skill) => (
             <div
               key={skill.name}
               className="flex items-center justify-between py-2 px-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -82,7 +84,7 @@ export function Skills() {
                 <div className="text-sm text-blue-100">Years Experience</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-bold mb-1">20+</div>
+                <div className="text-3xl md:text-4xl font-bold mb-1">10+</div>
                 <div className="text-sm text-blue-100">Projects Built</div>
               </div>
               <div>
