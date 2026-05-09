@@ -225,6 +225,7 @@ export function useChatBot() {
             { role: 'user', content: userInput },
           ],
           stream: false,
+          num_gpu: -1, // Use all available GPU memory (prioritizes RTX 3050 and AMD Radeon over CPU)
         }),
       });
 
