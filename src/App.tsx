@@ -10,6 +10,7 @@ import { SoftSkills } from '@/sections/SoftSkills';
 import { Certifications } from '@/sections/Certifications';
 import { Contact } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
+import { ChatBot } from '@/components/custom/ChatBot';
 
 function App() {
   const { theme, toggleTheme, mounted } = useTheme();
@@ -36,6 +37,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <ChatBot />
     </div>
   );
 }
