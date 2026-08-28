@@ -45,7 +45,8 @@ export function ChatBot({ className }: ChatBotProps) {
         className={cn(
           'group relative flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:scale-105 active:scale-95',
           'bg-accent hover:bg-accent/90 text-accent-foreground',
-          'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 dark:focus:ring-offset-slate-950'
+          'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 dark:focus:ring-offset-slate-950',
+          'hover:shadow-xl hover:shadow-accent/20'
         )}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
       >
@@ -61,15 +62,23 @@ export function ChatBot({ className }: ChatBotProps) {
           'fixed bottom-20 right-4 z-40 w-[380px] max-w-[90vw] rounded-xl border bg-card shadow-xl transition-all duration-300 ease-in-out',
           'data-[open=true]:bottom-20 data-[open=false]:bottom-0 data-[open=false]:opacity-0 data-[open=false]:scale-95',
           'border-slate-200 dark:border-slate-800',
-          'data-[open=true]:shadow-2xl'
+          'data-[open=true]:shadow-2xl',
+          'overflow-hidden',
+          isOpen ? 'pointer-events-auto' : 'pointer-events-none'
         )}
         data-open={isOpen}
       >
         {/* Header */}
         <div className={cn('flex items-center justify-between border-b border-slate-200 dark:border-slate-800', 'p-4')}>
-          <div className="flex items-center gap-2">
-            <MessageCircle className="h-5 w-5 text-accent" />
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Ask about Kobe</h2>
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <MessageCircle className="h-5 w-5 text-accent" />
+              <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Ask about Kobe</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Full Stack Developer Portfolio</p>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -98,9 +107,14 @@ export function ChatBot({ className }: ChatBotProps) {
         >
           {messages.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
-              <MessageCircle className="mb-4 h-12 w-12 text-slate-300 dark:text-slate-700" />
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <div className="mb-4 p-4 rounded-full bg-accent/10">
+                <MessageCircle className="h-12 w-12 text-accent" />
+              </div>
+              <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">
                 Ask me anything about my skills, projects, experience, or how to contact me!
+              </p>
+              <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
+                I'm here to help you learn more about my work
               </p>
             </div>
           ) : (
@@ -119,21 +133,14 @@ export function ChatBot({ className }: ChatBotProps) {
             ))
           )}
 
-          {/* Loading Indicator */}
+          {/* Typing Indicator */}
           {isLoading && (
-            <div className="mb-4 ml-auto rounded-lg bg-muted px-4 py-3">
-              <div className="flex gap-1">
+            <div className="mb-4 mr-auto rounded-lg bg-muted px-4 py-3">
+              <div className="flex items-center gap-1">
                 <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400 dark:bg-slate-500" style={{ animationDelay: '0ms' }} />
                 <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400 dark:bg-slate-500" style={{ animationDelay: '150ms' }} />
                 <span className="h-2 w-2 animate-bounce rounded-full bg-slate-400 dark:bg-slate-500" style={{ animationDelay: '300ms' }} />
               </div>
-            </div>
-          )}
-
-          {/* Error Message */}
-          {error && (
-            <div className="mb-4 ml-auto rounded-lg bg-destructive/10 px-4 py-3 text-destructive">
-              {error}
             </div>
           )}
 
@@ -151,7 +158,8 @@ export function ChatBot({ className }: ChatBotProps) {
               disabled={isLoading}
               className={cn(
                 'flex-1 rounded-lg border border-slate-300 bg-background px-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 disabled:cursor-not-allowed disabled:opacity-50',
-                'dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-600'
+                'dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-600',
+                'transition-all duration-200'
               )}
               aria-label="Chat message input"
             />
@@ -160,7 +168,8 @@ export function ChatBot({ className }: ChatBotProps) {
               disabled={isLoading || !userInput.trim()}
               className={cn(
                 'flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-all duration-200 hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50',
-                'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 dark:focus:ring-offset-slate-950'
+                'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 dark:focus:ring-offset-slate-950',
+                'hover:shadow-lg hover:shadow-accent/20'
               )}
               aria-label="Send message"
             >

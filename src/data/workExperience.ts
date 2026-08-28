@@ -11,10 +11,32 @@ export interface WorkExperience {
 export const workExperience: WorkExperience[] = [
   {
     id: 1,
+    title: "Information System Analyst II",
+    company: "Municipality of San Mateo, Rizal",
+    location: "Onsite / PH",
+    dateRange: "June 17, 2026 – Present",
+    description: [
+      "Analyzes, designs, and implements information systems to support municipal operations and services",
+      "Evaluates existing systems for efficiency improvements and recommends technology-driven solutions",
+      "Coordinates with departments to gather requirements and ensure systems align with organizational needs",
+      "Oversees data integrity, system security, and compliance with government ICT standards",
+      "Provides technical guidance and training to staff on the use of information systems",
+    ],
+    technologies: [
+      "PHP",
+      "Laravel",
+      "MySQL",
+      "JavaScript",
+      "React",
+      "Git",
+    ],
+  },
+  {
+    id: 2,
     title: "IT Programmer",
     company: "Municipality of San Mateo, Rizal",
     location: "Onsite / PH",
-    dateRange: "2024 – Present",
+    dateRange: "2024 – June 2026",
     description: [
       "Led the development and maintenance of internal government systems and web applications",
       "Designed and implemented scalable backend features using PHP and Laravel framework",
@@ -34,7 +56,7 @@ export const workExperience: WorkExperience[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "Freelance Web Developer",
     company: "Self-Employed",
     location: "Remote / PH",
@@ -61,7 +83,7 @@ export const workExperience: WorkExperience[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "IT Staff",
     company: "Municipality of San Mateo, Rizal",
     location: "Onsite / PH",
