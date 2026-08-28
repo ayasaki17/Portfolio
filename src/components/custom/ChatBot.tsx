@@ -11,7 +11,7 @@ export function ChatBot({ className }: ChatBotProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [userInput, setUserInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { messages, isLoading, error, sendMessage, clearMessages } = useChatBot();
+  const { messages, isLoading, sendMessage, clearMessages } = useChatBot();
 
   const toggleChat = () => {
     setIsOpen((prev) => !prev);
